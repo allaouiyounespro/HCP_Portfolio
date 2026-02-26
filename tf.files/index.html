@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Younes ALLAOUI – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --cyan: #22d3ee;
+      --dark: #0f172a;
+      --dark2: #1e3a5f;
+      --white: #ffffff;
+      --gray: #64748b;
+      --light-bg: #f8f9fb;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --border: #e2e8f0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: #0d1117ee;
+      backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 52px;
+    }
+    .nav-logo {
+      color: var(--white); font-size: 18px; font-weight: 700; letter-spacing: 0.5px;
+    }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a {
+      color: #cbd5e1; text-decoration: none; font-size: 14px; font-weight: 400;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 60% 40%, #1a3a8f 0%, #0d1b4b 45%, #050d1f 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 80px 20px 60px;
+      position: relative;
+    }
+    .avatar {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: linear-gradient(135deg, #38bdf8, #2563eb);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; font-weight: 700; color: white;
+      margin-bottom: 28px;
+    }
+    .hero-name {
+      font-size: clamp(32px, 5vw, 52px); font-weight: 700; color: var(--white);
+      margin-bottom: 12px; letter-spacing: -0.5px;
+    }
+    .hero-title {
+      font-size: 16px; color: #94a3b8; margin-bottom: 20px; font-weight: 400;
+    }
+    .hero-desc {
+      max-width: 480px; font-size: 14px; color: #94a3b8; line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 48px; }
+    .btn-primary {
+      background: var(--blue); color: white; padding: 12px 28px;
+      border-radius: 8px; border: none; font-size: 14px; font-weight: 500;
+      cursor: pointer; transition: background .2s;
+      text-decoration: none; display: inline-flex; align-items: center;
+    }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-outline {
+      background: transparent; color: white; padding: 11px 28px;
+      border-radius: 8px; border: 1.5px solid rgba(255,255,255,0.35);
+      font-size: 14px; font-weight: 500; cursor: pointer; transition: border-color .2s;
+      text-decoration: none; display: inline-flex; align-items: center;
+    }
+    .btn-outline:hover { border-color: white; }
+    .scroll-arrow {
+      color: #94a3b8; font-size: 20px; animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* ─── SECTIONS COMMON ─── */
+    section { padding: 80px 20px; }
+    .section-title {
+      text-align: center; font-size: 32px; font-weight: 700; color: var(--text);
+      margin-bottom: 10px;
+    }
+    .section-sub {
+      text-align: center; color: var(--gray); font-size: 14px; margin-bottom: 52px;
+    }
+    .container { max-width: 1080px; margin: 0 auto; }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--light-bg); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+    }
+    .about-text p { font-size: 14px; color: #475569; line-height: 1.8; margin-bottom: 16px; }
+    .expertise-card {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f2a4a 100%);
+      border-radius: 16px; padding: 28px; box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    }
+    .expertise-card h3 { color: white; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
+    .skill-bar { margin-bottom: 20px; }
+    .skill-bar-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .skill-bar-header span { font-size: 13px; color: #cbd5e1; }
+    .skill-bar-header .pct { color: #7dd3fc; font-weight: 600; }
+    .bar-track { background: rgba(255,255,255,.1); border-radius: 4px; height: 6px; }
+    .bar-fill { height: 6px; border-radius: 4px; background: linear-gradient(90deg, #22d3ee, #3b82f6); }
+
+    /* ─── PROJECTS ─── */
+    #projects { background: white; }
+    .projects-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+    }
+    .project-card {
+      border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+      transition: box-shadow .25s, transform .25s;
+      background: white;
+    }
+    .project-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.1); transform: translateY(-2px); }
+    .project-img {
+      width: 100%; height: 180px; object-fit: cover;
+      background: #e2e8f0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: #94a3b8;
+    }
+    .project-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .project-body { padding: 20px; }
+    .project-body h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .project-body p { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .tag {
+      background: #eff6ff; color: #3b82f6; font-size: 12px; font-weight: 500;
+      padding: 4px 12px; border-radius: 20px;
+    }
+    .project-links { display: flex; gap: 20px; }
+    .project-links a {
+      font-size: 13px; color: var(--text); text-decoration: none;
+      display: flex; align-items: center; gap: 6px; font-weight: 500;
+    }
+    .project-links a:hover { color: var(--blue); }
+
+    /* ─── SKILLS ─── */
+    #skills { background: var(--light-bg); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .skill-card {
+      background: white; border: 1px solid var(--border); border-radius: 16px;
+      padding: 24px; transition: box-shadow .2s;
+    }
+    .skill-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.08); }
+    .skill-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--blue); display: flex; align-items: center;
+      justify-content: center; font-size: 20px; margin-bottom: 16px;
+    }
+    .skill-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+    .skill-card ul { list-style: none; }
+    .skill-card ul li {
+      font-size: 13px; color: var(--gray); padding: 3px 0;
+      position: relative; padding-left: 14px;
+    }
+    .skill-card ul li::before {
+      content: '•'; position: absolute; left: 0; color: var(--blue);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: white; }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start;
+    }
+    .contact-info h3 { font-size: 20px; font-weight: 700; margin-bottom: 24px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 10px; background: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .contact-item-text label { font-size: 13px; color: var(--gray); display: block; }
+    .contact-item-text a, .contact-item-text span {
+      font-size: 14px; color: var(--blue); text-decoration: none;
+    }
+    .social-title { font-size: 16px; font-weight: 700; margin-bottom: 14px; margin-top: 28px; }
+    .socials { display: flex; gap: 12px; }
+    .social-btn {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; text-decoration: none; transition: opacity .2s;
+    }
+    .social-btn:hover { opacity: .8; }
+    .s-linkedin { background: #0077b5; }
+    .s-github { background: #1a1a2e; }
+    .s-twitter { background: #1da1f2; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 14px; font-weight: 600; }
+    .form-group input, .form-group textarea {
+      border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 16px;
+      font-size: 14px; font-family: inherit; outline: none;
+      transition: border-color .2s; resize: vertical;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--blue); }
+    .form-group textarea { min-height: 130px; }
+    .btn-send {
+      background: linear-gradient(90deg, #2563eb, #38bdf8);
+      color: white; border: none; border-radius: 10px;
+      padding: 14px; font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: opacity .2s;
+    }
+    .btn-send:hover { opacity: .9; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .about-grid, .projects-grid, .skills-grid, .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">YA.</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="avatar">YA</div>
+  <h1 class="hero-name">Younes ALLAOUI</h1>
+  <p class="hero-title">Senior DevOps Engineer | AWS Cloud &amp; Kubernetes Specialist</p>
+  <p class="hero-desc">Senior AWS Cloud &amp; DevOps Engineer with 13+ years in enterprise and regulated environments. Lead architect of large-scale hybrid AWS infrastructures supporting mission-critical platforms with 99.9%+ availability.</p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary">View My Projects</a>
+    <a href="#contact" class="btn-outline">Contact Me</a>
+  </div>
+  <div class="scroll-arrow">↓</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Senior AWS Cloud &amp; DevOps Engineer with 13+ years of experience in enterprise and regulated environments. I specialize in architecting large-scale hybrid AWS infrastructures that support mission-critical platforms with 99.9%+ availability.</p>
+        <p>My proven track record includes significant operational improvements: 30% reduction in incidents, 35% decrease in MTTR (Mean Time To Recovery), 25% cloud cost optimization, and 40% acceleration in delivery pipelines.</p>
+        <p>I bring strong leadership expertise across Kubernetes orchestration, Infrastructure as Code (IaC), cloud security best practices, and production governance frameworks.</p>
+      </div>
+      <div class="expertise-card">
+        <h3>Core Expertise</h3>
+        <div class="skill-bar">
+          <div class="skill-bar-header"><span>AWS Cloud &amp; Architecture</span><span class="pct">95%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-header"><span>Kubernetes &amp; Containers</span><span class="pct">93%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:93%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-header"><span>Terraform &amp; IaC</span><span class="pct">92%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-header"><span>CI/CD &amp; Automation</span><span class="pct">90%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">My Projects</h2>
+    <p class="section-sub">Key infrastructure projects demonstrating expertise in cloud architecture and DevOps automation</p>
+    <div class="projects-grid">
+      
+      <div class="project-card">
+        <div class="project-img" style="background:#1a2e4a;display:flex;align-items:center;justify-content:center;">
+          <span style="color:#94a3b8;font-size:13px;">📁 Portfolio Website</span>
+        </div>
+        <div class="project-body">
+          <h3>Portfolio Website</h3>
+          <p>Personal portfolio website deployed on AWS using modern DevOps practices, Terraform and automated CI/CD pipeline.</p>
+          <div class="tags">
+            <span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">CI/CD</span><span class="tag">CloudFront</span>
+          </div>
+          <div class="project-links">
+            <a href="#">⬦ Code</a>
+            <a href="#">↗ Details</a>
+          </div>
+        </div>
+      </div>
+<!-- 
+      <div class="project-card">
+        <div class="project-img" style="background:#1a2e4a;display:flex;align-items:center;justify-content:center;">
+          <span style="color:#94a3b8;font-size:13px;">☸ Kubernetes Platform</span>
+        </div>
+        <div class="project-body">
+          <h3>Kubernetes Multi-Cluster Platform</h3>
+          <p>Enterprise-grade Kubernetes platform on AWS EKS with multi-cluster management and automated deployment pipelines.</p>
+          <div class="tags">
+            <span class="tag">Kubernetes</span><span class="tag">EKS</span><span class="tag">Helm</span><span class="tag">ArgoCD</span>
+          </div>
+          <div class="project-links">
+            <a href="#">⬦ Code</a>
+            <a href="#">↗ Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img" style="background:#1a2e4a;display:flex;align-items:center;justify-content:center;">
+          <span style="color:#94a3b8;font-size:13px;">☁ Hybrid Cloud Infra</span>
+        </div>
+        <div class="project-body">
+          <h3>Migration operation & Hybrid Cloud Infrastructure</h3>
+          <p>Large-scale hybrid AWS infrastructure with 99.9%+ availability supporting mission-critical applications.</p>
+          <div class="tags">
+            <span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">Terraform</span><span class="tag">VPC</span><span class="tag">HA Architecture</span>
+          </div>
+          <div class="project-links">
+            <a href="#">⬦ Code</a>
+            <a href="#">↗ Details</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-img" style="background:#1a2e4a;display:flex;align-items:center;justify-content:center;">
+          <span style="color:#94a3b8;font-size:13px;">💰 Cloud Cost Optimization</span>
+        </div>
+        <div class="project-body">
+          <h3>Cloud Cost Optimization</h3>
+          <p>Implemented comprehensive cloud cost optimization strategies achieving 25% reduction in AWS spending.</p>
+          <div class="tags">
+            <span class="tag">AWS</span><span class="tag">Cost Optimization</span><span class="tag">Monitoring</span><span class="tag">FinOps</span>
+          </div>
+          <div class="project-links">
+            <a href="#">⬦ Code</a>
+            <a href="#">↗ Details</a>
+          </div>
+        </div>
+      </div>
+    -->
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title">Skills</h2>
+    <p class="section-sub">Comprehensive expertise in cloud infrastructure, automation, and DevOps practices</p>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <h3>Cloud Platforms</h3>
+        <ul>
+          <li>AWS (EC2, EKS, Lambda)</li>
+          <li>Cloud Watch</li>
+          <li>IAM</li>
+          <li>Multi-Cloud</li>
+          <li>Cloud Migration</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <h3>Kubernetes &amp; Containers</h3>
+        <ul>
+          <li>Kubernetes (EKS, AKS)</li>
+          <li>Docker</li>
+          <li>Helm Charts</li>
+          <li>Service Mesh</li>
+          <li>Container Security</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">&lt;/&gt;</div>
+        <h3>Infrastructure as Code</h3>
+        <ul>
+          <li>Terraform</li>
+          <li>CloudFormation</li>
+          <li>Ansible</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <h3>CI/CD &amp; DevOps</h3>
+        <ul>
+          <li>Jenkins</li>
+          <li>GitLab CI</li>
+          <li>GitHub Actions</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">📱</div>
+        <h3>Middleware &amp; Applications</h3>
+        <ul>
+          <li>Apache/Nginx</li>
+          <li>Tomcat</li>
+          <li>JBoss</li>
+          <li>API Gateway</li>
+          <li>Load Balancing</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🔒</div>
+        <h3>Monitoring &amp; Security</h3>
+        <ul>
+          <li>Vault</li>
+          <li>Grafana</li>
+          <li>ELK Stack</li>
+          <li>Dyanatrace</li>
+          <li>Appdynamics</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-sub">Have a project in mind? Feel free to reach out!</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Get in Touch</h3>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-item-text">
+            <label>Email</label>
+            <a href="mailto:younes.allaoui@example.com">younes.allaoui.pro@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-item-text">
+            <label>Phone</label>
+            <a href="tel:+33612345678">+33 6 61 97 20 69</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-item-text">
+            <label>Location</label>
+            <span>Lyon, France</span>
+          </div>
+        </div>
+        <p class="social-title">Social Media</p>
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/younes-allaoui-82baa572/" class="social-btn s-linkedin">in</a>
+          <a href="https://github.com/allaouiyounespro" class="social-btn s-github">⌥</a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" placeholder="Your name" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Your message..."></textarea>
+        </div>
+        <button class="btn-send">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

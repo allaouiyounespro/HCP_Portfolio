@@ -1,0 +1,9 @@
+﻿# Terraform state (contient des secrets !)
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# Variables sensibles
+*.tfvars
+*.tfvars.json
