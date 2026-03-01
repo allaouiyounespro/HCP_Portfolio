@@ -2,13 +2,14 @@
 #  ROUTE 53 – Zone DNS + Records
 # ─────────────────────────────────────────────
 
-resource "aws_route53_zone" "main" {
-  name = var.domain_name
+data "aws_route53_zone" "main" {
+  name         = var.domain_name
+  private_zone = false
 }
 
-# Record apex (younes-allaoui.fr) → CloudFront
+# Record apex (younesallaoui.com) → CloudFront
 resource "aws_route53_record" "apex" {
-  zone_id = aws_route53_zone.main.zone_id
+  zone_id = data.aws_route53_zone.main.zone_id
   name    = var.domain_name
   type    = "A"
 
@@ -21,7 +22,7 @@ resource "aws_route53_record" "apex" {
 
 # Record www (www.younes-allaoui.fr) → CloudFront
 resource "aws_route53_record" "www" {
-  zone_id = aws_route53_zone.main.zone_id
+  zone_id = data.aws_route53_zone.main.zone_id
   name    = "www.${var.domain_name}"
   type    = "A"
 
