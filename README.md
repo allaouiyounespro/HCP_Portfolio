@@ -14,38 +14,8 @@ terraform-portfolio/
 └── README.md
 ```
 
+<img width="3803" height="1841" alt="image" src="https://github.com/user-attachments/assets/022954f1-4940-49ed-960d-c644db8d7df8" />
+<img width="3193" height="1657" alt="image" src="https://github.com/user-attachments/assets/d79a3065-d1dc-434e-935e-04fd19e8d444" />
+<img width="2345" height="1778" alt="image" src="https://github.com/user-attachments/assets/501ce8e3-0c56-4ab2-803e-4de05b1eaf38" />
 
-## 🌐 4. Configure your Domain Registrar
-
-After `terraform apply`, retrieve the Route 53 nameservers:
-
-```bash
-terraform output route53_nameservers
-```
-
-You will get 4 nameservers like:
-```
-ns-123.awsdns-45.com
-ns-678.awsdns-90.net
-ns-111.awsdns-22.org
-ns-999.awsdns-55.co.uk
-```
-
-➡️ **Go to your registrar** (OVH, Gandi, Namecheap…) and replace the existing nameservers with these.
-
-⏱️ DNS propagation: 15 min to 48h depending on your registrar.
-
----
-
-## ✅ 5. Verify the Deployment
-
-```bash
-# CloudFront URL (available immediately)
-terraform output cloudfront_url
-
-# Final website URL (after DNS propagation)
-terraform output website_url
-```
-
----
 
