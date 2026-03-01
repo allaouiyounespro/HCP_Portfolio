@@ -7,5 +7,5 @@ variable "aws_region" {
 variable "domain_name" {
   description = "Nom de domaine principal"
   type        = string
-  default     = "younes-allaoui.fr"
+  default     = "younesallaoui.com"
 }
