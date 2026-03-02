@@ -13,5 +13,5 @@ variable "domain_name" {
 variable "alert_email" {
   description = "Cloudwatch's alarm email"
   type        = string
- 
+
 }
