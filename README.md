@@ -2,7 +2,6 @@
 
 > **Production-grade AWS infrastructure** for a personal portfolio website, fully automated with Terraform and managed via HCP Terraform (Terraform Cloud). Built with security, performance, and observability best practices.
 
-
 ---
 ## 📋 Table of Contents
 

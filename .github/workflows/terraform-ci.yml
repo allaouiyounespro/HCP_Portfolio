@@ -10,7 +10,7 @@ jobs:
   terraform-ci:
     name: Validate & Lint
     runs-on: ubuntu-latest
-    environnement: production
+    environment: production
 
     steps:
       # ── 1. Checkout code ──────────────────────────────────────
