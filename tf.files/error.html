@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 – Page Not Found | Younes ALLAOUI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #2563eb;
+      --cyan: #22d3ee;
+      --dark: #050d1f;
+      --dark2: #0d1b4b;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Syne', sans-serif;
+      background: var(--dark);
+      color: white;
+      overflow: hidden;
+    }
+
+    /* Animated background */
+    .bg {
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse at 60% 40%, #1a3a8f 0%, #0d1b4b 45%, #050d1f 100%);
+    }
+
+    /* Grid overlay */
+    .grid {
+      position: fixed; inset: 0; z-index: 1;
+      background-image:
+        linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+    }
+    @keyframes gridMove {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(60px); }
+    }
+
+    /* Glowing orbs */
+    .orb {
+      position: fixed; border-radius: 50%; filter: blur(80px); z-index: 1; pointer-events: none;
+    }
+    .orb1 {
+      width: 400px; height: 400px;
+      background: rgba(37, 99, 235, 0.25);
+      top: -100px; left: -100px;
+      animation: float1 8s ease-in-out infinite;
+    }
+    .orb2 {
+      width: 300px; height: 300px;
+      background: rgba(34, 211, 238, 0.15);
+      bottom: -80px; right: -80px;
+      animation: float2 10s ease-in-out infinite;
+    }
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(40px, 30px); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-30px, -20px); }
+    }
+
+    /* Main content */
+    .container {
+      position: relative; z-index: 10;
+      height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 20px;
+    }
+
+    /* 404 big number */
+    .error-code {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(100px, 20vw, 180px);
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, #ffffff 30%, #22d3ee 70%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      animation: fadeDown 0.8s ease both;
+      letter-spacing: -4px;
+    }
+
+    /* Glitch effect on 404 */
+    .error-code::before,
+    .error-code::after {
+      content: '404';
+      position: absolute; top: 0; left: 0; right: 0;
+      background: linear-gradient(135deg, #ffffff 30%, #22d3ee 70%, #2563eb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .error-code::before {
+      animation: glitch1 4s infinite;
+      clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+    }
+    .error-code::after {
+      animation: glitch2 4s infinite;
+      clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
+    }
+    @keyframes glitch1 {
+      0%, 90%, 100% { transform: translate(0); opacity: 0; }
+      92% { transform: translate(-4px, 1px); opacity: 0.6; }
+      94% { transform: translate(4px, -1px); opacity: 0.6; }
+      96% { transform: translate(0); opacity: 0; }
+    }
+    @keyframes glitch2 {
+      0%, 85%, 100% { transform: translate(0); opacity: 0; }
+      87% { transform: translate(4px, 2px); opacity: 0.5; }
+      89% { transform: translate(-4px, -2px); opacity: 0.5; }
+      91% { transform: translate(0); opacity: 0; }
+    }
+
+    .divider {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--cyan));
+      margin: 24px auto;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .error-title {
+      font-size: clamp(20px, 4vw, 28px);
+      font-weight: 700; color: white;
+      margin-bottom: 12px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .error-msg {
+      font-size: 15px; color: #94a3b8;
+      max-width: 400px; line-height: 1.7;
+      margin-bottom: 40px;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+
+    .error-msg code {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px; color: var(--cyan);
+      background: rgba(34, 211, 238, 0.08);
+      padding: 2px 8px; border-radius: 4px;
+    }
+
+    /* Buttons */
+    .btns {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+
+    .btn-home {
+      background: linear-gradient(135deg, var(--blue), #1d4ed8);
+      color: white; text-decoration: none;
+      padding: 13px 32px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; font-family: 'Syne', sans-serif;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+    }
+    .btn-home:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(37, 99, 235, 0.55);
+    }
+
+    .btn-back {
+      background: transparent; color: #94a3b8;
+      text-decoration: none; padding: 12px 28px;
+      border-radius: 8px; border: 1.5px solid rgba(255,255,255,0.15);
+      font-size: 14px; font-weight: 600; font-family: 'Syne', sans-serif;
+      transition: border-color .2s, color .2s;
+      cursor: pointer;
+    }
+    .btn-back:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
+    /* Nav logo */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 52px;
+      background: rgba(5, 13, 31, 0.6); backdrop-filter: blur(8px);
+    }
+    .nav-logo { color: white; font-size: 18px; font-weight: 700; text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: #94a3b8; text-decoration: none; font-size: 14px; transition: color .2s; }
+    .nav-links a:hover { color: white; }
+
+    /* Status badge */
+    .status {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(34, 211, 238, 0.08);
+      border: 1px solid rgba(34, 211, 238, 0.2);
+      border-radius: 20px; padding: 6px 16px;
+      font-size: 12px; color: var(--cyan);
+      font-family: 'Space Mono', monospace;
+      margin-bottom: 20px;
+      animation: fadeDown 0.8s 0.1s ease both;
+    }
+    .status-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--cyan);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="grid"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">YA.</a>
+  <ul class="nav-links">
+    <li><a href="/#home">Home</a></li>
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#projects">Projects</a></li>
+    <li><a href="/#skills">Skills</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <div class="status">
+    <div class="status-dot"></div>
+    ERROR_CODE :: 404
+  </div>
+
+  <div class="error-code">404</div>
+
+  <div class="divider"></div>
+
+  <h1 class="error-title">Page Not Found</h1>
+  <p class="error-msg">
+    The page you're looking for doesn't exist or has been moved.<br/>
+    Check the URL or head back to <code>younesallaoui.com</code>
+  </p>
+
+  <div class="btns">
+    <a href="/" class="btn-home">← Back to Home</a>
+    <button class="btn-back" onclick="history.back()">Go Back</button>
+  </div>
+</div>
+
+</body>
+</html>

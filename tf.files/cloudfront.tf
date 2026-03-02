@@ -40,16 +40,16 @@ resource "aws_cloudfront_distribution" "myportfolio_distribution" {
     max_ttl     = 31536000 # 1 an
   }
 
-  # Erreurs → redirige vers index.html
+  # Error →  error.html
   custom_error_response {
     error_code         = 403
     response_code      = 200
-    response_page_path = "/index.html"
+    response_page_path = "/error.html"
   }
   custom_error_response {
     error_code         = 404
     response_code      = 200
-    response_page_path = "/index.html"
+    response_page_path = "/error.html"
   }
 
   restrictions {

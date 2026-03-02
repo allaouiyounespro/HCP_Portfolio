@@ -49,11 +49,20 @@ resource "aws_s3_bucket_policy" "my_portfolio_policy" {
   })
 }
 
-# Upload automatique du fichier index.html
+# automatic uplod for index.html
 resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.myportfolio.id
   key          = "index.html"
   source       = "index.html"
   content_type = "text/html"
   etag         = filemd5("index.html")
+}
+
+# automatic uplod for error.html
+resource "aws_s3_object" "error" {
+  bucket       = aws_s3_bucket.myportfolio.id
+  key          = "error.html"
+  source       = "error.html"
+  content_type = "text/html"
+  etag         = filemd5("error.html")
 }

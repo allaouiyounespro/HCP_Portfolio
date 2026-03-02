@@ -1,11 +1,17 @@
 variable "aws_region" {
-  description = "Région AWS principale"
+  description = "principal AWS region"
   type        = string
   default     = "eu-west-3"
 }
 
 variable "domain_name" {
-  description = "Nom de domaine principal"
+  description = "princpal domain"
   type        = string
   default     = "younesallaoui.com"
+}
+
+variable "alert_email" {
+  description = "Cloudwatch's alarm email"
+  type        = string
+ 
 }

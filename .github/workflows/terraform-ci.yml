@@ -1,0 +1,70 @@
+name: Terraform CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  terraform-ci:
+    name: Validate & Lint
+    runs-on: ubuntu-latest
+    environnement: production
+
+    steps:
+      # ── 1. Checkout code ──────────────────────────────────────
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── 2. Setup Terraform ────────────────────────────────────
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~> 1.3"
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      # ── 3. Terraform Format Check ─────────────────────────────
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check -recursive
+        working-directory: tf.files
+        continue-on-error: false
+
+      # ── 4. Terraform Init ─────────────────────────────────────
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: tf.files
+
+      # ── 5. Terraform Validate ─────────────────────────────────
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate
+        working-directory: tf.files
+
+      # ── 6. TFLint ─────────────────────────────────────────────
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+
+      - name: TFLint
+        id: tflint
+        run: tflint --chdir=tf.files
+
+      # ── 7. PR Comment with results ────────────────────────────
+      - name: Post results to PR
+        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request'
+        with:
+          script: |
+            const output = `#### 🖌 Terraform Format \`${{ steps.fmt.outcome }}\`
+            #### ⚙️ Terraform Init \`${{ steps.init.outcome }}\`
+            #### ✅ Terraform Validate \`${{ steps.validate.outcome }}\`
+            #### 🔍 TFLint \`${{ steps.tflint.outcome }}\``;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
