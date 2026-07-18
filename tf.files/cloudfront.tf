@@ -23,6 +23,8 @@ resource "aws_cloudfront_distribution" "myportfolio_distribution" {
     origin_access_control_id = aws_cloudfront_origin_access_control.myportfolio_oac.id
   }
 
+  # Default behavior = HTML pages (incl. apex "/").
+  # Short TTL so a new deploy is visible within minutes, not a full day.
   default_cache_behavior {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
@@ -36,7 +38,26 @@ resource "aws_cloudfront_distribution" "myportfolio_distribution" {
     }
 
     min_ttl     = 0
-    default_ttl = 86400    # 1 jour
+    default_ttl = 300  # 5 min – deploys (index.html / error.html) show up fast
+    max_ttl     = 3600 # 1 h ceiling
+  }
+
+  # Static assets (images) – kept aggressively cached at the edge.
+  ordered_cache_behavior {
+    path_pattern           = "*.png"
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+    target_origin_id       = "S3-${var.domain_name}"
+    viewer_protocol_policy = "redirect-to-https"
+    compress               = true
+
+    forwarded_values {
+      query_string = false
+      cookies { forward = "none" }
+    }
+
+    min_ttl     = 0
+    default_ttl = 604800   # 7 jours
     max_ttl     = 31536000 # 1 an
   }
 

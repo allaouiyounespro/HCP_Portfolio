@@ -3,6 +3,11 @@ output "cloudfront_url" {
   value       = "https://${aws_cloudfront_distribution.myportfolio_distribution.domain_name}"
 }
 
+output "cloudfront_distribution_id" {
+  description = "CloudFront distribution ID (use it to create cache invalidations)"
+  value       = aws_cloudfront_distribution.myportfolio_distribution.id
+}
+
 output "website_url" {
   description = "URL of website"
   value       = "https://${var.domain_name}"

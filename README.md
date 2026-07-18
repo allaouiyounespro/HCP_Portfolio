@@ -91,7 +91,7 @@ Key configuration:
 - **TLS 1.2 minimum** — modern security standard (`TLSv1.2_2021`)
 - **IPv6 enabled** — future-proof connectivity
 - **Compression enabled** — automatic Gzip/Brotli compression for faster load times
-- **Aggressive caching** — `default_ttl = 86400` (1 day), `max_ttl = 31536000` (1 year)
+- **Tiered caching** — HTML pages use a short TTL (`default_ttl = 300` / 5 min) so a new deploy is visible within minutes, while a dedicated `*.png` behavior keeps images aggressively cached (`default_ttl = 604800` / 7 days, `max_ttl = 31536000` / 1 year)
 - **Custom error pages** — both 403 and 404 errors are handled gracefully and redirected to `error.html`
 - **OAC (Origin Access Control)** — uses SigV4 signing to authenticate requests to S3, replacing the legacy OAI method
 
@@ -147,6 +147,7 @@ Exposes key infrastructure values after `terraform apply`:
 |--------|-------------|
 | `website_url` | Final website URL (`https://younesallaoui.com`) |
 | `cloudfront_url` | Raw CloudFront distribution URL |
+| `cloudfront_distribution_id` | CloudFront distribution ID (used for cache invalidations) |
 | `s3_bucket_name` | Name of the S3 bucket |
 | `certificate_arn` | ARN of the ACM SSL certificate |
 | `route53_nameservers` | Route 53 nameservers for the hosted zone |
