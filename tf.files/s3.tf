@@ -66,3 +66,12 @@ resource "aws_s3_object" "error" {
   content_type = "text/html"
   etag         = filemd5("error.html")
 }
+
+# automatic upload for og.png (Open Graph / social share preview)
+resource "aws_s3_object" "og_image" {
+  bucket       = aws_s3_bucket.myportfolio.id
+  key          = "og.png"
+  source       = "og.png"
+  content_type = "image/png"
+  etag         = filemd5("og.png")
+}

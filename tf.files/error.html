@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>404 – Page Not Found | Younes ALLAOUI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#0a1020" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2338bdf8'/%3E%3Cstop offset='1' stop-color='%232563eb'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%230a1020'/%3E%3Ctext x='32' y='43' font-family='Arial,Helvetica,sans-serif' font-size='30' font-weight='700' fill='url(%23g)' text-anchor='middle'%3EYA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,7 +22,7 @@
 
     html, body {
       height: 100%;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Inter', system-ui, sans-serif;
       background: var(--dark);
       color: white;
       overflow: hidden;
@@ -79,7 +84,7 @@
 
     /* 404 big number */
     .error-code {
-      font-family: 'Space Mono', monospace;
+      font-family: 'JetBrains Mono', monospace;
       font-size: clamp(100px, 20vw, 180px);
       font-weight: 700;
       line-height: 1;
@@ -145,7 +150,7 @@
     }
 
     .error-msg code {
-      font-family: 'Space Mono', monospace;
+      font-family: 'JetBrains Mono', monospace;
       font-size: 13px; color: var(--cyan);
       background: rgba(34, 211, 238, 0.08);
       padding: 2px 8px; border-radius: 4px;
@@ -161,7 +166,7 @@
       background: linear-gradient(135deg, var(--blue), #1d4ed8);
       color: white; text-decoration: none;
       padding: 13px 32px; border-radius: 8px;
-      font-size: 14px; font-weight: 600; font-family: 'Syne', sans-serif;
+      font-size: 14px; font-weight: 600; font-family: 'Inter', sans-serif;
       transition: transform .2s, box-shadow .2s;
       box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
     }
@@ -174,7 +179,7 @@
       background: transparent; color: #94a3b8;
       text-decoration: none; padding: 12px 28px;
       border-radius: 8px; border: 1.5px solid rgba(255,255,255,0.15);
-      font-size: 14px; font-weight: 600; font-family: 'Syne', sans-serif;
+      font-size: 14px; font-weight: 600; font-family: 'Inter', sans-serif;
       transition: border-color .2s, color .2s;
       cursor: pointer;
     }
@@ -199,7 +204,7 @@
       border: 1px solid rgba(34, 211, 238, 0.2);
       border-radius: 20px; padding: 6px 16px;
       font-size: 12px; color: var(--cyan);
-      font-family: 'Space Mono', monospace;
+      font-family: 'JetBrains Mono', monospace;
       margin-bottom: 20px;
       animation: fadeDown 0.8s 0.1s ease both;
     }
